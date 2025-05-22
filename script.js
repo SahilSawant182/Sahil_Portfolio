@@ -17,5 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             nav.style.background = '#fff';
         }
+    });    
+
+    // Add hover effect to education cards
+    const educationCards = document.querySelectorAll('.education-card');
+    educationCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        });
     });
 });
