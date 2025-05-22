@@ -88,7 +88,7 @@ section {
 
 .profile-container {
     text-align: center;
-    position: relative; 
+    position: relative;
     z-index: 2;
 }
 
@@ -146,7 +146,7 @@ section {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-} 
+}
 
 .skills-container {
     display: grid;
@@ -181,7 +181,7 @@ section {
 
 .skill-card ul {
     list-style: none;
-    margin-top: 15px  
+    margin-top: 15px;
 }
 
 .skill-card li {
@@ -189,28 +189,27 @@ section {
     color: #666;
 }
 
-
-
 .education-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     max-width: 1200px;
     width: 100%;
+    margin-top: 30px;
 }
 
 .education-card {
     background: white;
     padding: 35px;
     border-radius: 15px;
-    box-shadow: 0 10px  30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .education-card:hover {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -222,6 +221,11 @@ section {
     margin-bottom: 25px;
 }
 
+.education-card h3 {
+    margin: 15px 0;
+    color: #333;
+}
+
 .education-card ul {
     list-style: none;
     margin-top: 15px;
@@ -231,8 +235,6 @@ section {
     margin: 10px 0;
     color: #666;
 }
-
-
 
 .contact-container {
     display: flex;
