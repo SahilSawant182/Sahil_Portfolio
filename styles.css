@@ -421,13 +421,36 @@ h3 {
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-    grid-template-areas:
-        "lead budget"
-        "lead attendance";
-    align-items: stretch;
+    display: flex;
     gap: 20px;
+    margin: 0;
+    padding: 8px 18px 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 18px;
+    scrollbar-color: rgba(57, 214, 255, 0.7) rgba(255, 255, 255, 0.08);
+    scrollbar-width: thin;
+}
+
+.projects-grid::after {
+    content: "";
+    flex: 0 0 1px;
+}
+
+.projects-grid::-webkit-scrollbar {
+    height: 10px;
+}
+
+.projects-grid::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.projects-grid::-webkit-scrollbar-thumb {
+    border: 2px solid rgba(7, 10, 18, 0.95);
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
 }
 
 .bring-grid {
@@ -548,28 +571,21 @@ h3 {
 
 .project-card {
     position: relative;
-    padding: 26px;
+    padding: 24px;
     overflow: hidden;
-    min-height: 0;
+    flex: 0 0 370px;
+    width: 370px;
+    height: 720px;
     display: flex;
     flex-direction: column;
+    scroll-snap-align: start;
     transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
 }
 
 .project-card-large {
-    grid-area: lead;
-    min-height: 100%;
-    padding: clamp(28px, 4vw, 42px);
+    padding: 24px;
     border-color: rgba(57, 214, 255, 0.26);
     background: linear-gradient(135deg, rgba(57, 214, 255, 0.13), rgba(255, 255, 255, 0.07), rgba(120, 245, 176, 0.08));
-}
-
-.project-card:nth-child(2) {
-    grid-area: budget;
-}
-
-.project-card:nth-child(3) {
-    grid-area: attendance;
 }
 
 .project-card:hover {
@@ -631,12 +647,12 @@ h3 {
     position: relative;
     z-index: 1;
     margin-bottom: 14px;
-    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    font-size: 1.42rem;
 }
 
 .project-card-large h3 {
-    max-width: 760px;
-    font-size: clamp(2rem, 4vw, 3.35rem);
+    max-width: none;
+    font-size: 1.42rem;
 }
 
 .project-card p,
@@ -646,13 +662,13 @@ h3 {
 }
 
 .project-summary {
-    max-width: 760px;
+    max-width: none;
     color: var(--muted);
     font-size: 1rem;
 }
 
 .project-card-large .project-summary {
-    font-size: 1.07rem;
+    font-size: 1rem;
 }
 
 .tech-stack {
@@ -771,14 +787,6 @@ footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "lead"
-            "budget"
-            "attendance";
-    }
-
 }
 
 @media (max-width: 760px) {
@@ -841,6 +849,9 @@ footer {
     }
 
     .project-card {
+        flex-basis: min(82vw, 360px);
+        width: min(82vw, 360px);
+        height: 700px;
         padding: 18px;
     }
 
