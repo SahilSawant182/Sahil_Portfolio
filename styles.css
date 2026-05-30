@@ -421,36 +421,13 @@ h3 {
 }
 
 .projects-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    grid-template-areas:
+        "lead budget"
+        "lead attendance";
+    align-items: stretch;
     gap: 20px;
-    padding: 6px 18px 22px;
-    margin: 0 -18px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: 18px;
-    scrollbar-color: rgba(57, 214, 255, 0.65) rgba(255, 255, 255, 0.08);
-    scrollbar-width: thin;
-}
-
-.projects-grid::after {
-    content: "";
-    flex: 0 0 1px;
-}
-
-.projects-grid::-webkit-scrollbar {
-    height: 10px;
-}
-
-.projects-grid::-webkit-scrollbar-track {
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.projects-grid::-webkit-scrollbar-thumb {
-    border: 2px solid rgba(7, 10, 18, 0.9);
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--cyan), var(--green));
 }
 
 .bring-grid {
@@ -571,14 +548,28 @@ h3 {
 
 .project-card {
     position: relative;
-    padding: 24px;
+    padding: 26px;
     overflow: hidden;
-    flex: 0 0 clamp(340px, calc((100% - 40px) / 3), 380px);
-    min-height: 760px;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    scroll-snap-align: start;
     transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+}
+
+.project-card-large {
+    grid-area: lead;
+    min-height: 100%;
+    padding: clamp(28px, 4vw, 42px);
+    border-color: rgba(57, 214, 255, 0.26);
+    background: linear-gradient(135deg, rgba(57, 214, 255, 0.13), rgba(255, 255, 255, 0.07), rgba(120, 245, 176, 0.08));
+}
+
+.project-card:nth-child(2) {
+    grid-area: budget;
+}
+
+.project-card:nth-child(3) {
+    grid-area: attendance;
 }
 
 .project-card:hover {
@@ -592,7 +583,9 @@ h3 {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(57, 214, 255, 0.12), transparent 44%);
+    background:
+        radial-gradient(circle at top right, rgba(57, 214, 255, 0.16), transparent 34%),
+        linear-gradient(135deg, rgba(57, 214, 255, 0.08), transparent 46%);
     pointer-events: none;
 }
 
@@ -602,20 +595,48 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    gap: 18px;
+    margin-bottom: 22px;
 }
 
 .project-header span {
-    color: rgba(255, 255, 255, 0.22);
-    font-size: 2.4rem;
+    display: block;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 2rem;
     font-weight: 800;
+    line-height: 1;
+}
+
+.project-header p {
+    margin-top: 7px;
+    color: var(--green);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.project-header i {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(57, 214, 255, 0.22);
+    border-radius: 8px;
+    background: rgba(57, 214, 255, 0.09);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .project-card h3 {
     position: relative;
     z-index: 1;
-    margin-bottom: 12px;
-    font-size: 1.45rem;
+    margin-bottom: 14px;
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.project-card-large h3 {
+    max-width: 760px;
+    font-size: clamp(2rem, 4vw, 3.35rem);
 }
 
 .project-card p,
@@ -624,188 +645,20 @@ h3 {
     z-index: 1;
 }
 
-.project-card p + p {
-    margin-top: 10px;
+.project-summary {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.project-card-large .project-summary {
+    font-size: 1.07rem;
 }
 
 .tech-stack {
     position: relative;
     z-index: 1;
-    margin-top: 24px;
-}
-
-.project-preview {
-    position: relative;
-    z-index: 1;
-    height: 220px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 8px;
-    background: linear-gradient(145deg, rgba(8, 15, 30, 0.94), rgba(16, 28, 48, 0.86));
-    overflow: hidden;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.project-preview::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 28px 28px;
-    opacity: 0.35;
-}
-
-.erp-preview {
-    display: grid;
-    grid-template-columns: 74px 1fr;
-    gap: 14px;
-    padding: 18px;
-}
-
-.preview-sidebar,
-.preview-screen,
-.phone-mockup,
-.mini-chart,
-.shift-board {
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(255, 255, 255, 0.11);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.preview-sidebar {
-    padding: 14px 10px;
-}
-
-.preview-sidebar span,
-.preview-table span,
-.phone-mockup span,
-.shift-board span {
-    display: block;
-    height: 10px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.16);
-}
-
-.preview-sidebar span + span,
-.preview-table span + span,
-.phone-mockup span + span,
-.shift-board span + span {
-    margin-top: 14px;
-}
-
-.preview-sidebar span:first-child {
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, var(--cyan), var(--green));
-}
-
-.preview-screen {
-    padding: 14px;
-}
-
-.preview-topbar,
-.phone-total,
-.shift-pill {
-    height: 24px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
-}
-
-.preview-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 14px;
-}
-
-.preview-stats span {
-    min-height: 54px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, rgba(57, 214, 255, 0.26), rgba(120, 245, 176, 0.12));
-}
-
-.preview-chart {
-    height: 78px;
-    margin-top: 14px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, rgba(255, 209, 102, 0.34), rgba(255, 107, 154, 0.12));
-    clip-path: polygon(0 55%, 16% 35%, 31% 48%, 45% 24%, 61% 40%, 76% 18%, 100% 32%, 100% 100%, 0 100%);
-}
-
-.preview-table {
-    margin-top: 14px;
-}
-
-.budget-preview,
-.attendance-preview {
-    min-height: 0;
-    padding: 18px;
-}
-
-.budget-preview {
-    display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    align-items: end;
-    gap: 18px;
-}
-
-.phone-mockup {
-    min-height: 160px;
-    padding: 14px;
-}
-
-.phone-total {
-    width: 72%;
-    margin-bottom: 22px;
-    background: linear-gradient(135deg, var(--green), var(--cyan));
-}
-
-.mini-chart {
-    height: 142px;
-    display: flex;
-    align-items: end;
-    gap: 10px;
-    padding: 14px;
-}
-
-.mini-chart span {
-    flex: 1;
-    border-radius: 999px 999px 4px 4px;
-    background: linear-gradient(to top, var(--rose), var(--yellow));
-}
-
-.mini-chart span:nth-child(1) { height: 48%; }
-.mini-chart span:nth-child(2) { height: 78%; }
-.mini-chart span:nth-child(3) { height: 58%; }
-.mini-chart span:nth-child(4) { height: 88%; }
-
-.attendance-preview {
-    display: grid;
-    grid-template-columns: 1fr 96px;
-    gap: 16px;
-    align-items: center;
-}
-
-.shift-board {
-    min-height: 154px;
-    padding: 16px;
-}
-
-.shift-board div {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 16px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--yellow), var(--rose));
-}
-
-.shift-pill {
-    width: 86px;
-    height: 154px;
-    background: linear-gradient(to top, rgba(57, 214, 255, 0.16), rgba(57, 214, 255, 0.72));
+    margin-top: 22px;
 }
 
 .project-actions {
@@ -918,9 +771,12 @@ footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .project-card {
-        flex-basis: min(420px, calc(50% - 10px));
-        min-height: 0;
+    .projects-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "lead"
+            "budget"
+            "attendance";
     }
 
 }
@@ -985,20 +841,7 @@ footer {
     }
 
     .project-card {
-        flex-basis: min(86vw, 380px);
         padding: 18px;
-    }
-
-    .erp-preview,
-    .budget-preview,
-    .attendance-preview {
-        grid-template-columns: 1fr;
-        min-height: 0;
-    }
-
-    .preview-sidebar,
-    .shift-pill {
-        display: none;
     }
 
     .experience-top {
