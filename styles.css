@@ -415,7 +415,6 @@ h3 {
 
 .bring-grid,
 .skills-grid,
-.projects-grid,
 .why-grid {
     display: grid;
     gap: 18px;
@@ -424,14 +423,19 @@ h3 {
 .projects-grid {
     display: flex;
     gap: 20px;
-    margin-right: calc((100vw - min(1160px, calc(100vw - 32px))) / -2);
-    padding: 6px calc((100vw - min(1160px, calc(100vw - 32px))) / 2) 22px 0;
+    padding: 6px 18px 22px;
+    margin: 0 -18px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x proximity;
-    scroll-padding-left: 0;
+    scroll-padding-inline: 18px;
     scrollbar-color: rgba(57, 214, 255, 0.65) rgba(255, 255, 255, 0.08);
     scrollbar-width: thin;
+}
+
+.projects-grid::after {
+    content: "";
+    flex: 0 0 1px;
 }
 
 .projects-grid::-webkit-scrollbar {
@@ -569,7 +573,7 @@ h3 {
     position: relative;
     padding: 24px;
     overflow: hidden;
-    flex: 0 0 clamp(330px, 38vw, 440px);
+    flex: 0 0 clamp(340px, calc((100% - 40px) / 3), 380px);
     min-height: 760px;
     display: flex;
     flex-direction: column;
@@ -914,6 +918,11 @@ footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .project-card {
+        flex-basis: min(420px, calc(50% - 10px));
+        min-height: 0;
+    }
+
 }
 
 @media (max-width: 760px) {
@@ -977,7 +986,6 @@ footer {
 
     .project-card {
         flex-basis: min(86vw, 380px);
-        min-height: 790px;
         padding: 18px;
     }
 
