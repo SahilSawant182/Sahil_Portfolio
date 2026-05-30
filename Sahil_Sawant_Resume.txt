@@ -1,0 +1,42 @@
+Sahil Sawant
+Software Developer | Full Stack Developer
+
+Email: sawantsahil183@gmail.com
+LinkedIn: https://www.linkedin.com/in/sahil-sawant-234460197
+GitHub: https://github.com/SahilSawant182
+
+PROFILE
+Software Developer focused on Full Stack Web Development with experience building business applications using Frappe/ERPNext, React.js, Next.js, JavaScript, HTML, CSS, Python, and SQL. Interested in building clean user interfaces, scalable backend systems, and software that solves real business problems.
+
+EXPERIENCE
+Software Developer Intern
+Quantbit Technologies Pvt. Ltd. - Sangli, Maharashtra
+
+- Developed and customized ERP applications using Frappe Framework and ERPNext.
+- Built responsive frontend interfaces using React.js and Next.js.
+- Worked on backend business logic, reports, workflows, and API integrations.
+- Integrated ERP modules with business requirements.
+- Collaborated with team members on real production applications.
+- Improved UI/UX of internal ERP products.
+- Worked with databases and API integrations.
+
+TECHNICAL SKILLS
+Frontend: HTML5, CSS3, JavaScript, React.js, Next.js, Responsive Design, Tailwind CSS
+Backend: Python, Frappe Framework, ERPNext, REST APIs, Server-side Development
+Database: MySQL, MariaDB, SQL
+Tools: Git, GitHub, Linux, VS Code, Postman
+
+FEATURED PROJECTS
+ERP UI - Dynamic React Frontend for Frappe/ERPNext
+Modern ERP frontend built with React for Frappe/ERPNext. Built a metadata-driven ERP platform that dynamically renders forms, list views, and navigation directly from Frappe DocType definitions instead of hardcoded UI. Developed a custom React runtime for Frappe Client Scripts, custom buttons, field triggers, lifecycle hooks, server-side API interactions, session-based authentication, and metadata caching.
+Tech: React, TypeScript, Vite, Frappe Framework, ERPNext, REST APIs, JavaScript
+GitHub: https://github.com/SahilSawant182/erp_ui.git
+
+Budget Buddy - Personal AI-Powered Finance Platform
+Smart personal finance management platform for spending, budgets, savings goals, recurring payments, secure authentication, financial insights, spending analytics, and responsive dashboard experience.
+Tech: React, JavaScript, Tailwind CSS, Shadcn UI, Supabase, Clerk, Chart.js
+GitHub: https://github.com/SahilSawant182/budget-buddy-Fin.git
+
+Production Shift Attendance Log System
+System for managing production shift attendance, worker logs, daily records, and operational visibility for industrial teams.
+Tech: Frappe Framework, ERPNext, Python, SQL, JavaScript

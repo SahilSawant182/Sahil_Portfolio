@@ -1,66 +1,64 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".site-header");
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const navItems = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("main section[id]");
+    const revealItems = document.querySelectorAll(".reveal");
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+    const setHeaderState = () => {
+        header.classList.toggle("scrolled", window.scrollY > 24);
+    };
+
+    const closeMenu = () => {
+        navLinks.classList.remove("show");
+        document.body.classList.remove("menu-open");
+        hamburger.setAttribute("aria-expanded", "false");
+        hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    };
+
+    hamburger.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("show");
+        document.body.classList.toggle("menu-open", isOpen);
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+        hamburger.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    navItems.forEach((link) => {
+        link.addEventListener("click", () => {
+            closeMenu();
         });
     });
 
-    // Navigation background change on scroll
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('nav');
-        if (window.scrollY > 50) {
-            nav.style.background = 'rgba(198, 97, 77, 0.95)';
-        } else {
-            nav.style.background = '#9b5555ff';
-        }
-    });
+    const revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.16 }
+    );
 
-    // Add hover effect to education cards 
-    const educationCards = document.querySelectorAll('.education-card');
-    educationCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-            this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-        });
-    });
+    revealItems.forEach((item) => revealObserver.observe(item));
 
-    // Hamburger menu toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    const sectionObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
 
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            navLinks.classList.toggle('show');
-        });
-    }
+                navItems.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+                });
+            });
+        },
+        { rootMargin: "-45% 0px -45% 0px" }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    setHeaderState();
+    window.addEventListener("scroll", setHeaderState, { passive: true });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
