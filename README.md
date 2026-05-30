@@ -1,5 +1,5 @@
 # Portfolio Website
-##To open website just click below link
+#Click below link to open website
 
 ##Link of Website= https://sahilsawant182.github.io/Sahil_Portfolio/
 
