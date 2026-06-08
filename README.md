@@ -8,7 +8,7 @@ A modern, responsive portfolio website showcasing my skills as an AI & DS Engine
 ## Features
 - Responsive design
 - Interactive UI elements
-- Skills showcase
+- Skills showcase 
 - Contact information
 - Social media integration
 
